@@ -5,3 +5,25 @@
   <%= f.number_field :time, placeholder: :time %>
   <%= f.submit "Log Activity" %>
 <% end %>
+
+<table>
+  <tr>
+    <th>Activity</th>
+    <th>Weight</th>
+    <th>Reps</th>
+    <th>Time</th>
+    <th>Logged At</th>
+  </tr>
+
+  <% @activity_logs.each do |log| %>
+
+  <tr>
+    <td><%= log.activity.name %></td>
+    <td><%= log.weight %></td>
+    <td><%= log.reps %></td>
+    <td><%= log.time %></td>
+    <td><%= log.created_at %></td>
+  </tr>
+
+  <% end %>
+</table>

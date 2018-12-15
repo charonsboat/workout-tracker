@@ -1,6 +1,7 @@
 class ActivityLogsController < ApplicationController
   def new
     @activity_log = ActivityLog.new
+    @activity_logs = ActivityLog.all
     @activities = Activity.all
   end
 
