@@ -1,0 +1,7 @@
+<%= form_for @activity_log, url: { action: :create } do |f| %>
+  <%= f.collection_select(:activity_id, @activities, :id, :name) %>
+  <%= f.number_field :weight, placeholder: :weight %>
+  <%= f.number_field :reps, placeholder: :reps %>
+  <%= f.number_field :time, placeholder: :time %>
+  <%= f.submit "Log Activity" %>
+<% end %>
