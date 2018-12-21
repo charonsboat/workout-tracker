@@ -1,19 +1,15 @@
 class ActivityLogsController < ApplicationController
-  def new
-    @activity_log = ActivityLog.new
-    @activity_logs = ActivityLog.all
-    @activities = Activity.all
+  def index
+    render json: ActivityLog.all
   end
 
   def create
-    @activity_log = ActivityLog.create(create_params)
-
-    redirect_to action: :new
+    render json: ActivityLog.create(create_params)
   end
 
   private
 
   def create_params
-    params.require(:activity_log).permit(:activity_id, :weight, :reps, :time)
+    params.permit(:activity_id, :weight, :reps, :time)
   end
 end
