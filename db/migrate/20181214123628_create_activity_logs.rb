@@ -6,7 +6,7 @@ class CreateActivityLogs < ActiveRecord::Migration[5.2]
       t.string :weight
       t.string :reps
       t.string :time
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

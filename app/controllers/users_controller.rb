@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     render json: User.create(create_params)
   end
 
+  def current
+    render json: current_user
+  end
+
   private
 
   def create_params

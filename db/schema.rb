@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_15_183521) do
+ActiveRecord::Schema.define(version: 2018_12_14_123628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_12_15_183521) do
   end
 
   create_table "activity_logs", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "activity_id", null: false
     t.string "weight"
     t.string "reps"
@@ -29,10 +30,11 @@ ActiveRecord::Schema.define(version: 2018_12_15_183521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_activity_logs_on_activity_id"
+    t.index ["user_id"], name: "index_activity_logs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
+    t.string "email", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,4 +42,5 @@ ActiveRecord::Schema.define(version: 2018_12_15_183521) do
   end
 
   add_foreign_key "activity_logs", "activities"
+  add_foreign_key "activity_logs", "users"
 end
