@@ -4,7 +4,7 @@ class ActivityLogsController < ApplicationController
   end
 
   def create
-    render json: ActivityLog.create(create_params)
+    render json: ActivityLog.create!(create_params.merge(user: current_user))
   end
 
   private

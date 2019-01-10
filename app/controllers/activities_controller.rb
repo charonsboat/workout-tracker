@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    render json: Activity.create(create_params)
+    render json: Activity.create!(create_params)
   end
 
   private

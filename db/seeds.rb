@@ -11,3 +11,4 @@ Activity.where(name: 'Front Squat').first_or_create!
 Activity.where(name: 'Deadlift').first_or_create!
 Activity.where(name: 'Power Clean').first_or_create!
 Activity.where(name: 'Bench Press').first_or_create!
+Activity.where(name: 'Snatch').first_or_create!
