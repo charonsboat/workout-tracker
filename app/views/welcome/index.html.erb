@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <title>Tracker</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="app">
+    <div v-if="signed_in()">
+      <p>Signed in as {{ current_user.email }}. <button @click="sign_out">Sign Out</button></p>
+
+      <div>
+        <select v-model="new_activity_log.activity_id">
+          <option selected>Choose an Activity</option>
+          <option v-for="activity in activities" :value="activity.id">{{ activity.name }}</option>
+        </select>
+        <input v-model="new_activity_log.weight" type="number" placeholder="Weight">
+        <input v-model="new_activity_log.reps" type="number" placeholder="Reps">
+        <input v-model="new_activity_log.time" type="number" placeholder="Time">
+        <button @click="log_activity">Log Activity</button>
+      </div>
+      <div>
+        <ul>
+          <li v-for="log in activity_logs">{{ log }}</li>
+        </ul>
+      </div>
+    </div>
+    <div v-else>
+      <input v-model="current_user.email" type="email" placeholder="Email">
+      <input v-model="temp.password" type="password" placeholder="Password">
+      <button @click="sign_in">Sign In</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+  <%= javascript_include_tag :application %>
+</body>
+</html>
