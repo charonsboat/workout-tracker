@@ -4,27 +4,52 @@
   <title>Tracker</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" integrity="sha256-2pUeJf+y0ltRPSbKOeJh09ipQFYxUdct5nTY6GAXswA=" crossorigin="anonymous" />
+  <%= stylesheet_link_tag :application %>
 </head>
 <body>
   <div id="app">
     <div v-if="signed_in()">
-      <p>Signed in as {{ current_user.email }}. <button @click="sign_out">Sign Out</button></p>
-
-      <div>
-        <select v-model="new_activity_log.activity_id">
-          <option selected>Choose an Activity</option>
-          <option v-for="activity in activities" :value="activity.id">{{ activity.name }}</option>
-        </select>
-        <input v-model="new_activity_log.weight" type="number" placeholder="Weight">
-        <input v-model="new_activity_log.reps" type="number" placeholder="Reps">
-        <input v-model="new_activity_log.time" type="number" placeholder="Time">
-        <button @click="log_activity">Log Activity</button>
-      </div>
-      <div>
-        <ul>
-          <li v-for="log in activity_logs">{{ log }}</li>
-        </ul>
-      </div>
+      <section class="section">
+        <div class="container">
+          <p>Signed in as {{ current_user.email }}. <button class="button" @click="sign_out">Sign Out</button></p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="field">
+            <label class="label">Activity</label>
+            <div class="select">
+              <select v-model="new_activity_log.activity_id">
+                <option selected>Choose an Activity</option>
+                <option v-for="activity in activities" :value="activity.id">{{ activity.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Weight</label>
+            <input class="input" v-model="new_activity_log.weight" type="number" placeholder="Weight">
+          </div>
+          <div class="field">
+            <label class="label">Reps</label>
+            <input class="input" v-model="new_activity_log.reps" type="number" placeholder="Reps">
+          </div>
+          <div class="field">
+            <label class="label">Time</label>
+            <input class="input" v-model="new_activity_log.time" type="number" placeholder="Time">
+          </div>
+          <div class="field">
+            <button class="button" @click="log_activity">Log Activity</button>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <ul>
+            <li v-for="log in activity_logs">id: {{ log.id }}, weight: {{ log.weight }}, reps: {{ log.reps }}, time: {{ log.time }}</li>
+          </ul>
+        </div>
+      </section>
     </div>
     <div v-else>
       <input v-model="current_user.email" type="email" placeholder="Email">

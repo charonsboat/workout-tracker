@@ -78,11 +78,10 @@ const app = new Vue({
         time: this.new_activity_log.time,
       };
 
-      this.activity_logs.push(new_activity_log);
-
       this.post('/activity_logs', new_activity_log)
-        .then((json) => {
+        .then(json => {
           console.log('new_log_response', json);
+          this.activity_logs.push(json);
         })
         .catch(err => console.error(err))
 
