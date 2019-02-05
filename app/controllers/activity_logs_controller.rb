@@ -15,6 +15,6 @@ class ActivityLogsController < ApplicationController
   private
 
   def create_params
-    params.permit(:activity_id, :weight, :reps, :time, :completed_at)
+    params.permit(:activity_id, :weight, :reps, :time, :notes, :completed_at)
   end
 end

@@ -39,7 +39,12 @@
             <input class="input" v-model="new_activity_log.time" type="number" placeholder="Time">
           </div>
           <div class="field">
-            <label class="label">Date Override (optional)</label>
+            <label class="label">Notes</label>
+            <textarea class="input" v-model="new_activity_log.notes"></textarea>
+            <p class="help">Add notes to this entry. Example: "Failed on the last rep"</p>
+          </div>
+          <div class="field">
+            <label class="label">Date Override</label>
             <input class="input" v-model="new_activity_log.completed_at" type="date">
             <p class="help">Use this field to log an activity that you completed on another day. You probably won't use this most of the time.</p>
           </div>

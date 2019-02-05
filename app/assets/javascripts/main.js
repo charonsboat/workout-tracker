@@ -16,6 +16,7 @@ const app = new Vue({
       weight: null,
       reps: null,
       time: null,
+      notes: null,
       completed_at: null,
     },
     activities: [],
@@ -77,6 +78,7 @@ const app = new Vue({
         weight: this.new_activity_log.weight,
         reps: this.new_activity_log.reps,
         time: this.new_activity_log.time,
+        notes: this.new_activity_log.notes,
       };
 
       if (this.new_activity_log.completed_at) {
@@ -85,14 +87,14 @@ const app = new Vue({
 
       this.post('/activity_logs', new_activity_log)
         .then(json => {
-          console.log('new_log_response', json);
           this.activity_logs.push(json);
+
+          this.new_activity_log.weight = null;
+          this.new_activity_log.reps = null;
+          this.new_activity_log.time = null;
+          this.new_activity_log.notes = null;
         })
         .catch(err => console.error(err))
-
-      this.new_activity_log.weight = null;
-      this.new_activity_log.reps = null;
-      this.new_activity_log.time = null;
     }
   },
   updated: function () {
