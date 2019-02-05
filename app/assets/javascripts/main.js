@@ -16,6 +16,7 @@ const app = new Vue({
       weight: null,
       reps: null,
       time: null,
+      completed_at: null,
     },
     activities: [],
     activity_logs: [],
@@ -77,6 +78,10 @@ const app = new Vue({
         reps: this.new_activity_log.reps,
         time: this.new_activity_log.time,
       };
+
+      if (this.new_activity_log.completed_at) {
+        new_activity_log.completed_at = (new Date(this.new_activity_log.completed_at).getTime() / 1000);
+      }
 
       this.post('/activity_logs', new_activity_log)
         .then(json => {

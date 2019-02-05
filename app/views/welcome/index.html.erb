@@ -39,6 +39,11 @@
             <input class="input" v-model="new_activity_log.time" type="number" placeholder="Time">
           </div>
           <div class="field">
+            <label class="label">Date Override (optional)</label>
+            <input class="input" v-model="new_activity_log.completed_at" type="date">
+            <p class="help">Use this field to log an activity that you completed on another day. You probably won't use this most of the time.</p>
+          </div>
+          <div class="field">
             <button class="button" @click="log_activity">Log Activity</button>
           </div>
         </div>
@@ -52,9 +57,21 @@
       </section>
     </div>
     <div v-else>
-      <input v-model="current_user.email" type="email" placeholder="Email">
-      <input v-model="temp.password" type="password" placeholder="Password">
-      <button @click="sign_in">Sign In</button>
+      <section class="section">
+        <div class="container">
+          <div class="field">
+            <label class="label">Email</label>
+            <input class="input" v-model="current_user.email" type="email" placeholder="Email">
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <input class="input" v-model="temp.password" type="password" placeholder="Password">
+          </div>
+          <div class="field">
+            <button class="button" @click="sign_in">Sign In</button>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 

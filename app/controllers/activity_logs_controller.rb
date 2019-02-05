@@ -4,12 +4,17 @@ class ActivityLogsController < ApplicationController
   end
 
   def create
-    render json: ActivityLog.create!(create_params.merge(user: current_user))
+    render json: ActivityLog.create!(
+      create_params.tap do |args|
+        args[:user] = current_user
+        args[:completed_at] = Time.at(args[:completed_at]) if args[:completed_at]
+      end
+    )
   end
 
   private
 
   def create_params
-    params.permit(:activity_id, :weight, :reps, :time)
+    params.permit(:activity_id, :weight, :reps, :time, :completed_at)
   end
 end
