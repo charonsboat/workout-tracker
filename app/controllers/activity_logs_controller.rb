@@ -1,6 +1,6 @@
 class ActivityLogsController < ApplicationController
   def index
-    render json: ActivityLog.all
+    render json: ActivityLog.where(index_params.merge(user: current_user))
   end
 
   def create
@@ -13,6 +13,10 @@ class ActivityLogsController < ApplicationController
   end
 
   private
+
+  def index_params
+    params.permit(:activity_id)
+  end
 
   def create_params
     params.permit(:activity_id, :weight, :reps, :time, :notes, :completed_at)

@@ -20,11 +20,12 @@
           <div class="field">
             <label class="label">Activity</label>
             <div class="select">
-              <select v-model="new_activity_log.activity_id">
+              <select @change="fetch_current_pr" v-model="new_activity_log.activity_id">
                 <option selected>Choose an Activity</option>
                 <option v-for="activity in activities" :value="activity.id">{{ activity.name }}</option>
               </select>
             </div>
+            <p class="help">Current PR: {{ current_pr.weight }} x {{ current_pr.reps }}</p>
           </div>
           <div class="field">
             <label class="label">Weight</label>

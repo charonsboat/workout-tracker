@@ -11,6 +11,10 @@ const app = new Vue({
       email: null,
       token: null,
     },
+    current_pr: {
+      weight: 0,
+      reps: 0,
+    },
     new_activity_log: {
       activity_id: null,
       weight: null,
@@ -55,6 +59,7 @@ const app = new Vue({
           this.current_user.token = json.token;
 
           this.load_activities();
+          this.load_activity_logs();
         })
         .catch(err => console.error(err))
 
@@ -69,6 +74,22 @@ const app = new Vue({
       this.get('/activities')
         .then(json => {
           this.activities = json;
+        })
+        .catch(err => console.error(err));
+    },
+    load_activity_logs: function () {
+      this.get('/activity_logs')
+        .then(json => {
+          this.activity_logs = json;
+        })
+        .catch(err => console.error(err));
+    },
+    fetch_current_pr: function () {
+      this.get(`/activity_logs?activity_id=${this.new_activity_log.activity_id}`)
+        .then(json => {
+          this.current_pr = json.reduce((agg, log) => {
+            return log.weight > agg.weight && log.reps > 0 ? log : (log.weight == agg.weight ? (log.reps > agg.reps ? log : agg) : agg);
+          }, { weight: 0, reps: 0 });
         })
         .catch(err => console.error(err));
     },
@@ -93,6 +114,8 @@ const app = new Vue({
           this.new_activity_log.reps = null;
           this.new_activity_log.time = null;
           this.new_activity_log.notes = null;
+
+          this.fetch_current_pr();
         })
         .catch(err => console.error(err))
     }
@@ -107,6 +130,7 @@ const app = new Vue({
       this.current_user = JSON.parse(current_user);
 
       this.load_activities();
+      this.load_activity_logs();
     }
   }
 });
