@@ -25,7 +25,7 @@
                 <option v-for="activity in activities" :value="activity.id">{{ activity.name }}</option>
               </select>
             </div>
-            <p class="help">Current PR: {{ current_pr.weight }} x {{ current_pr.reps }}</p>
+            <p class="help">Current PR: {{ current_pr.weight }} x {{ current_pr.reps }} on {{ new Date((current_pr.completed_at || current_pr.created_at)).toDateString() }}</p>
           </div>
           <div class="field">
             <label class="label">Weight</label>
