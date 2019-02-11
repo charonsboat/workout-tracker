@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Activity.where(name: 'Squat').first_or_create!
+Activity.where(name: 'Squat (Low Bar)').first_or_create!
 Activity.where(name: 'Front Squat').first_or_create!
 Activity.where(name: 'Deadlift').first_or_create!
 Activity.where(name: 'Deadlift (DB)').first_or_create!
