@@ -41,3 +41,4 @@ Activity.where(name: 'Push Press (DB)').first_or_create!
 Activity.where(name: 'T2B').first_or_create!
 Activity.where(name: 'Curl').first_or_create!
 Activity.where(name: 'Curl (DB)').first_or_create!
+Activity.where(name: 'Handstand Push Up').first_or_create!
