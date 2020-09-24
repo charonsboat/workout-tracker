@@ -84,6 +84,9 @@ const app = new Vue({
         })
         .catch(err => console.error(err));
     },
+    fetch_activity_name: function (id) {
+      return this.activities.find(a => a.id == id).name
+    },
     fetch_current_pr: function () {
       this.get(`/activity_logs?activity_id=${this.new_activity_log.activity_id}`)
         .then(json => {

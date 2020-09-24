@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.where(email: 'test@test.test').first_or_create!(password: 'test') if Rails.env.development?
+
 Activity.where(name: 'Squat').first_or_create!
 Activity.where(name: 'Squat (Low Bar)').first_or_create!
 Activity.where(name: 'Front Squat').first_or_create!

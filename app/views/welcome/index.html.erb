@@ -57,7 +57,7 @@
       <section class="section">
         <div class="container">
           <ul>
-            <li v-for="log in activity_logs">id: {{ log.id }}, weight: {{ log.weight }}, reps: {{ log.reps }}, time: {{ log.time }}</li>
+            <li v-for="log in activity_logs">{{ fetch_activity_name(log.activity_id) }}: {{ log.weight }}x{{ log.reps }} ({{ log.time }}) at {{ new Date((current_pr.completed_at || current_pr.created_at)).toDateString() }}</li>
           </ul>
         </div>
       </section>
